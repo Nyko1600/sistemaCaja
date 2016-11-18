@@ -6,6 +6,6 @@ class Cliente {
 	String apellido
 	int doc
 	double saldo
-    static constraints = {
-    }
+	static constraints = {
+	}
 }
