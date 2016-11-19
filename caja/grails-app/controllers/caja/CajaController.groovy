@@ -4,12 +4,12 @@ class CajaController {
 
 	def cajaService
 	def index() {
-		def criteria = Cliente.createCriteria();
-		def records = criteria.list {  }
-		[clientList:records]
+		[clienteInstanceList: Cliente.list()]
 	}
-	def home() {
-		def algo = cajaService.setData()
+	def seleccionarServicio() {
+		def criteria = Servicio.createCriteria();
+		def records = criteria.list {  }
+		[serviceList:records, clinetId:params.client_id]
 	}
 
 	def caja(){
