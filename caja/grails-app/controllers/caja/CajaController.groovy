@@ -4,7 +4,9 @@ class CajaController {
 
 	def cajaService
 	def index() {
-		
+		def criteria = Cliente.createCriteria();
+		def records = criteria.list {  }
+		[clientList:records]
 	}
 	def home() {
 		def algo = cajaService.setData()
@@ -14,5 +16,10 @@ class CajaController {
 		cajaService.addPay(1, 0,100)
 		cajaService.addPay(1, 10, -50)
 		cajaService.addPay(1, 20, -43)
+	}
+	def listClientes(){
+		def criteria = Cliente.createCriteria();
+		def records = criteria.list {  }
+		[clientList:records]
 	}
 }

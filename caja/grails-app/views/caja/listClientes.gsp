@@ -1,10 +1,12 @@
 <html>
   <head>
+	<meta name='layout' content="main">
 	<title>Lista de clientes</title>
-	  <g:javascript library="jquery" />
 	</head>
 	<body>
-	  <table border="1">
+		<div id='overall' style="margin-left:10px">
+		<div style="margin-right:10px">
+		<table border="1" >
 	    <thead>
 	      <tr>
 	        <th>Client_id</th>
@@ -26,5 +28,7 @@
 	  	  </g:each>
 	  	</tbody>
 	  </table>
+	  </div>
+		</div>	 	
 	</body>
-</html>
+</html>	
