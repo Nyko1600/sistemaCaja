@@ -26,7 +26,7 @@
 	  	  	<td>${client.apellido}</td>
 	  	  	<td>${client.doc}</td>
 	  	  	<td>${client.saldo}</td>
-	  	  	<td><g:radio name="user_id" value="${client.client_id}"/></td>
+	  	  	<td><g:radio name="client_id" value="${client.client_id}"/></td>
 	  	  </tr>
 	  	  </g:each>
 	  	</tbody>

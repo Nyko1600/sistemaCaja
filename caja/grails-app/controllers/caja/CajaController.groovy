@@ -3,23 +3,28 @@ class CajaController {
 	static scaffold = true
 
 	def cajaService
-	def index() {
-		[clienteInstanceList: Cliente.list()]
-	}
+
 	def seleccionarServicio() {
 		def criteria = Servicio.createCriteria();
 		def records = criteria.list {  }
+		println params.client_id
 		[serviceList:records, clinetId:params.client_id]
 	}
 
 	def caja(){
-		cajaService.addPay(1, 0,100)
+		def clinetId=params.clinetId
+		def serviceId=params.serviceId
+		double monto=Integer.parseInt(params.entero)+Integer.parseInt(params.decimal)/100
+		println "el cliente es ${clinetId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
+		
+				cajaService.addPay(1, 0,100)
 		cajaService.addPay(1, 10, -50)
 		cajaService.addPay(1, 20, -43)
 	}
 	def listClientes(){
 		def criteria = Cliente.createCriteria();
-		def records = criteria.list {  }
+		def records = criteria.list {
+		}
 		[clientList:records]
 	}
 }
