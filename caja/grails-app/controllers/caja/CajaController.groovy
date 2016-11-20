@@ -4,12 +4,12 @@ class CajaController {
 
 	def cajaService
 
-	def seleccionarServicio() {
+	def selectService() {
 		def criteria = Servicio.createCriteria();
 		def records = criteria.list {  }
 		[serviceList:records, clinetId:params.client_id]
 	}
-	def ingresarDinero(){
+	def moneyIn(){
 		[clinetId:params.client_id]
 	}
 
@@ -25,7 +25,7 @@ class CajaController {
 		redirect(uri:'/')
 		
 	}
-	def listClientes(){
+	def listClient(){
 		def criteria = Cliente.createCriteria();
 		def records = criteria.list {
 		}
