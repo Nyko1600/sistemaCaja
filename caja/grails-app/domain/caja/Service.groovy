@@ -1,8 +1,7 @@
 package caja
 
-class Servicio {
-
-	int service_id
+class Service {
 	String nombre
 	String descripcion
+	String Fecha
 }

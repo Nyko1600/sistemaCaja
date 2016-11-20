@@ -1,4 +1,4 @@
 package caja
-class ClienteController {
+class ClientController {
 	static scaffold = true	
 }

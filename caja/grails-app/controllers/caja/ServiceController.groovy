@@ -1,5 +1,5 @@
 package caja
-class ServicioController {
+class ServiceController {
 	static scaffold = true
 	
 }
