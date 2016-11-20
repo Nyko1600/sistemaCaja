@@ -1,7 +1,7 @@
 package caja
 
 class Caja {
-	int service_id
+	int pay_id
 	int client_id
 	double monto
 	Date created = new Date()

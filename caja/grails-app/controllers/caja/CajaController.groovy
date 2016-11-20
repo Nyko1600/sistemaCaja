@@ -9,10 +9,10 @@ class CajaController {
 		[clientList:records]
 	}
 
-	def selectService() {
-		def criteria = Service.createCriteria();
+	def selectPay() {
+		def criteria = Pay.createCriteria();
 		def records = criteria.list {  }
-		[serviceList:records, clientId:params.client_id]
+		[payList:records, clientId:params.client_id]
 	}
 
 	def moneyIn(){
@@ -22,10 +22,10 @@ class CajaController {
 
 	def caja(){
 		def clientId=params.client_id
-		int serviceId=params.service_id? Integer.parseInt(params.service_id) : 0
+		int payId=params.pay_id? Integer.parseInt(params.pay_id) : 0
 		double monto=(Integer.parseInt(params.entero)+Integer.parseInt(params.decimal)/100)
 		//println "el cliente es ${clientId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
-		cajaService.addPay(clientId, serviceId, monto)
+		cajaService.addPay(clientId, payId, monto)
 		redirect(uri:'/')
 	}
 }

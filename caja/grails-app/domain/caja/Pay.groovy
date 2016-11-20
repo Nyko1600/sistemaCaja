@@ -1,6 +1,6 @@
 package caja
 
-class Service {
+class Pay {
 	String descripcion
 	String fecha
 	String nombre

@@ -36,7 +36,7 @@
 								${client.saldo}
 							</td>
 							<td class="form-group text-center">
-								<g:link action="selectService" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
+								<g:link action="selectPay" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
 								<g:link action="moneyIn" params="[client_id:client.id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
 							</td>
 						</tr>

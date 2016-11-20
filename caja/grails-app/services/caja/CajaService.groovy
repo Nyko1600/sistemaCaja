@@ -4,13 +4,13 @@ import grails.transaction.Transactional
 
 @Transactional
 class CajaService {
-	def addPay(String client_id, int service_id, double monto){
+	def addPay(String client_id, int pay_id, double monto){
 		Date fecha = new Date();
 		long clientId= Long.parseLong(client_id)
-		if(service_id!=0){
+		if(pay_id!=0){
 			monto*=-1
 		}
-		def nuevaCaja = new Caja(client_id:client_id,service_id:service_id,monto:monto,created:fecha)
+		def nuevaCaja = new Caja(client_id:client_id,pay_id:pay_id,monto:monto,created:fecha)
 		if (!nuevaCaja.save()) {
 			nuevaCaja.errors.each { println "errors: ${it}" }
 		}
