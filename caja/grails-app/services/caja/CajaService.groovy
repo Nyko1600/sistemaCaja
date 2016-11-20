@@ -4,19 +4,19 @@ import grails.transaction.Transactional
 
 @Transactional
 class CajaService {
-	def addPay(int client_id, int service_id=null, double monto){
+	def addPay(String client_id, String service_id=null, double monto){
 		Date fecha = new Date();
-
-		def nuevaCaja = new Caja(client_id:client_id,service_id:service_id,monto:monto,created:fecha)
+		int clientId=Integer.parseInt(client_id)
+		if(service_id!=null){
+			monto*=-1
+		}
+		def nuevaCaja = new Caja(client_id:client_id,service_id:null,monto:monto,created:fecha)
 		if (!nuevaCaja.save()) {
 			nuevaCaja.errors.each { println "errors: ${it}" }
 		}
-
-		def criteria = Cliente.createCriteria();
-		def records = criteria.list { eq("client_id",client_id ) }
-		//Cliente a = records.find{1}
-		Cliente a = records.get(0)
-		a.saldo=a.saldo+monto
+		def criteria = Cliente.createCriteria()
+		Cliente a = criteria { eq("client_id",clientId ) }.get(0)
+		a.saldo=Math.round((a.saldo+monto) * 100) / 100
 		if (!a.save()) {
 			a.errors.each { println "errors: ${it}" }
 		}		//Cliente lookup = criteria.list.find { println it.client_id}

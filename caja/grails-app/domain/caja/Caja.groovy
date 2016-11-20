@@ -6,7 +6,8 @@ class Caja {
 	double monto
 	Date created = new Date()
 	static constraints = {
-		client_id(blank:false)
+		client_id(blank:true)
+		service_id(nulleable:true)
 		//client_id(maxSize:1000, blank:false)
 	}
 	String toString(){
