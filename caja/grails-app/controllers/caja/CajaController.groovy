@@ -16,17 +16,15 @@ class CajaController {
 	}
 
 	def moneyIn(){
-		[clinetId:params.client_id]
+		println params.client_id
+		[clientId:params.client_id]
 	}
 
 	def caja(){
 		def clientId=params.client_id
-		def serviceId =null
-		if(params.service_id){
-			serviceId=params.service_id
-		}
+		int serviceId=params.service_id? Integer.parseInt(params.service_id) : 0
 		double monto=(Integer.parseInt(params.entero)+Integer.parseInt(params.decimal)/100)
-		//println "el cliente es ${clinetId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
+		//println "el cliente es ${clientId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
 		cajaService.addPay(clientId, serviceId, monto)
 		redirect(uri:'/')
 	}
