@@ -1,8 +1,8 @@
 package caja
 
 class Caja {
-	int pay_id
-	int client_id
+	long pay_id
+	long client_id
 	double monto
 	Date created = new Date()
 	static constraints = {

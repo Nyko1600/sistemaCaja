@@ -24,7 +24,7 @@
 								${client.id}
 							</td>
 							<td>
-								${client.nombre}
+								<g:link controller="Client" action="show" id="${client.id}" style="color:blue;">${client.nombre}</g:link>
 							</td>
 							<td>
 								${client.apellido}
@@ -38,6 +38,7 @@
 							<td class="form-group text-center">
 								<g:link action="selectPay" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
 								<g:link action="moneyIn" params="[client_id:client.id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
+								<g:link action="movements" params="[client_id:client.id]" class="btn btn-primary" style="color:white;">Movimientos</g:link>
 							</td>
 						</tr>
 					</g:each>

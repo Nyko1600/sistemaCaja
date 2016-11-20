@@ -1,4 +1,7 @@
 package caja
+import org.codehaus.jettison.json.JSONArray
+import org.codehaus.jettison.json.JSONObject
+
 class CajaController {
 	static scaffold = true
 	def cajaService
@@ -16,16 +19,21 @@ class CajaController {
 	}
 
 	def moneyIn(){
-		println params.client_id
 		[clientId:params.client_id]
 	}
 
 	def caja(){
-		def clientId=params.client_id
-		int payId=params.pay_id? Integer.parseInt(params.pay_id) : 0
+		String clientId=params.client_id
+		long payId=params.pay_id? Long.parseLong(params.pay_id) : 0
 		double monto=(Integer.parseInt(params.entero)+Integer.parseInt(params.decimal)/100)
 		//println "el cliente es ${clientId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
 		cajaService.addPay(clientId, payId, monto)
 		redirect(uri:'/')
+	}
+	def movements(){
+		def clientId=params.client_id
+		JSONArray values = new JSONArray();
+		values = cajaService.listMovements(clientId)
+		[jsonArray:values]
 	}
 }
