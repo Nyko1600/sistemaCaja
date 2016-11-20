@@ -35,12 +35,10 @@
 							<td>
 								${client.saldo}
 							</td>
-							<td class="form-group text-center"><g:link
-									action="seleccionarServicio"
-									params="[client_id:client.client_id]" class="btn btn-warning"
-									style="color:white;">Pago</g:link> <g:link
-									action="ingresarDinero" params="[client_id:client.client_id]"
-									class="btn btn-success" style="color:white;">Ingreso</g:link></td>
+							<td class="form-group text-center">
+								<g:link action="seleccionarServicio" params="[client_id:client.client_id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
+								<g:link action="ingresarDinero" params="[client_id:client.client_id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
+							</td>
 						</tr>
 					</g:each>
 				</tbody>

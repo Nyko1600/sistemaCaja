@@ -14,8 +14,8 @@ class CajaService {
 		if (!nuevaCaja.save()) {
 			nuevaCaja.errors.each { println "errors: ${it}" }
 		}
-		def criteria = Cliente.createCriteria()
-		Cliente a = criteria { eq("client_id",clientId ) }.get(0)
+		def criteria = Client.createCriteria()
+		Client a = criteria { eq("client_id",clientId ) }.get(0)
 		a.saldo=Math.round((a.saldo+monto) * 100) / 100
 		if (!a.save()) {
 			a.errors.each { println "errors: ${it}" }
