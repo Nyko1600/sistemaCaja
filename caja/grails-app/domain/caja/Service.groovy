@@ -1,7 +1,10 @@
 package caja
 
 class Service {
-	String nombre
 	String descripcion
-	String Fecha
+	String fecha
+	String nombre
+	static constraints = {
+		fecha(nulleable:true)
+	}
 }

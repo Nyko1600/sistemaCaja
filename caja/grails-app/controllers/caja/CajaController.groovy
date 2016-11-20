@@ -20,7 +20,7 @@ class CajaController {
 	}
 
 	def caja(){
-		def clientId=params.clinet_id
+		def clientId=params.client_id
 		def serviceId =null
 		if(params.service_id){
 			serviceId=params.service_id

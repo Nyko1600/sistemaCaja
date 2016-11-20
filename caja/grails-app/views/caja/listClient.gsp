@@ -21,7 +21,7 @@
 					<g:each in="${clientList}" status="i" var="client">
 						<tr>
 							<td>
-								${client.client_id}
+								${client.id}
 							</td>
 							<td>
 								${client.nombre}
@@ -36,17 +36,13 @@
 								${client.saldo}
 							</td>
 							<td class="form-group text-center">
-								<g:link action="seleccionarServicio" params="[client_id:client.client_id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
-								<g:link action="ingresarDinero" params="[client_id:client.client_id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
+								<g:link action="selectService" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
+								<g:link action="moneyIn" params="[client_id:client.id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
 							</td>
 						</tr>
 					</g:each>
 				</tbody>
 			</table>
-			<g:form controller="Cliente" action="create">
-				<input value="Nuevo cliente" type="submit">
-			</g:form>
-			<g:link action="create">crear</g:link>
 		</div>
 	</div>
 </body>

@@ -6,21 +6,20 @@ import grails.transaction.Transactional
 class CajaService {
 	def addPay(String client_id, String service_id=null, double monto){
 		Date fecha = new Date();
-		int clientId=Integer.parseInt(client_id)
+		long clientId= Long.parseLong(client_id)
 		if(service_id!=null){
 			monto*=-1
 		}
-		def nuevaCaja = new Caja(client_id:client_id,service_id:null,monto:monto,created:fecha)
+		def nuevaCaja = new Caja(client_id:client_id,service_id:service_id,monto:monto,created:fecha)
 		if (!nuevaCaja.save()) {
 			nuevaCaja.errors.each { println "errors: ${it}" }
 		}
 		def criteria = Client.createCriteria()
-		Client a = criteria { eq("client_id",clientId ) }.get(0)
+		Client a = criteria { eq("id",clientId ) }.get(0)
 		a.saldo=Math.round((a.saldo+monto) * 100) / 100
 		if (!a.save()) {
 			a.errors.each { println "errors: ${it}" }
-		}		//Cliente lookup = criteria.list.find { println it.client_id}
-		println "Exito"
+		}
 	}
 
 	def setData(){
