@@ -1,15 +1,16 @@
 package caja
-import org.codehaus.jettison.json.JSONArray
-import org.codehaus.jettison.json.JSONObject
 
 class CajaController {
 	static scaffold = true
 	def cajaService
 
 	def listClient(){
-		def criteria = Client.createCriteria();
-		def records = criteria.list { }
-		[clientList:records]
+		try{
+			def criteria = Client.createCriteria();
+			def records = criteria.list { }
+			[clientList:records]
+		}catch(Exception e){
+		}
 	}
 
 	def selectPay() {
@@ -23,17 +24,26 @@ class CajaController {
 	}
 
 	def caja(){
-		String clientId=params.client_id
-		long payId=params.pay_id? Long.parseLong(params.pay_id) : 0
-		double monto=(Integer.parseInt(params.entero)+Integer.parseInt(params.decimal)/100)
-		//println "el cliente es ${clientId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
-		cajaService.addPay(clientId, payId, monto)
-		redirect(uri:'/')
+		try{
+			String clientId=params.client_id
+			long payId=params.pay_id? Long.parseLong(params.pay_id) : 0
+			double monto=(Integer.parseInt(params.entero)+Integer.parseInt(params.decimal)/100)
+			//println "el cliente es ${clientId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
+			cajaService.addPay(clientId, payId, monto)
+			redirect(uri:'/')
+		}catch(Exception ex){
+			println "la esesion es"+ex
+			redirect(uri:'/')
+		}
 	}
 	def movements(){
-		def clientId=params.client_id
-		JSONArray values = new JSONArray();
-		values = cajaService.listMovements(clientId)
-		[jsonArray:values]
+		try{
+			def clientId=params.client_id
+			def values = cajaService.listMovements(clientId)
+			[objectArray:values]
+		}catch(NumberFormatException ex){
+			println "la esesion es"+ex
+			redirect(uri:'/')
+		}
 	}
 }

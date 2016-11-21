@@ -36,7 +36,7 @@ class CajaService {
 		def pagos = criteriaPay.list {
 			inList("id",listMovements.pay_id)
 		}
-		ArrayList<Map> values2 = new ArrayList<Map>();
+		ArrayList<Map> values = new ArrayList<Map>();
 
 		for(Caja movement :listMovements){
 			Map data = [:]
@@ -46,7 +46,7 @@ class CajaService {
 			}
 			data.putAt("cliente", cliente.doc)
 			data.putAt("pago", movement.pay_id==0? "INFGRSO DE DINERO" : pago.nombre)
-			data.putAt("cierre", movement.pay_id==0? "-" : pago.fecha)
+			data.putAt("vencimineto", movement.pay_id==0? "-" : pago.fecha)
 			data.putAt("descripcion", movement.pay_id==0? "-" : pago.descripcion)
 			data.putAt("registro", movement.created)
 			data.putAt("monto", movement.monto)

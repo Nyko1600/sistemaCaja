@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta name='layout' content="main">
-<title>Lista de clientes</title>
+<title>Lista de movimientos</title>
 </head>
 <body>
 	<div id='overall' style="margin-left: 10px">
@@ -9,37 +9,36 @@
 			<table border="1">
 				<thead>
 					<tr>
-						<th>Client_id</th>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Doc</th>
-						<th>Saldo</th>
-						<th>Selecccionar</th>
+						<th>Cuilt</th>
+						<th>Pago</th>
+						<th>Vencimineto</th>
+						<th>Descripcion</th>
+						<th>Fecha operacion</th>
+						<th>Monto</th>
 					</tr>
 				</thead>
 				<tbody>
-					<g:each in="${clientList}" status="i" var="client">
+					<g:each in="${objectArray}" status="i" var="object">
 						<tr>
 							<td>
-								${client.id}
+								${object.cliente}
 							</td>
 							<td>
-								<g:link controller="Client" action="show" id="${client.id}" style="color:blue;">${client.nombre}</g:link>
+								${object.pago}
 							</td>
 							<td>
-								${client.apellido}
+								${object.vencimineto}
 							</td>
 							<td>
-								${client.doc}
+								${object.descripcion}
 							</td>
 							<td>
-								${client.saldo}
+								${object.registro}
 							</td>
-							<td class="form-group text-center">
-								<g:link action="selectPay" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
-								<g:link action="moneyIn" params="[client_id:client.id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
-								<g:link action="movements" params="[client_id:client.id]" class="btn btn-primary" style="color:white;">Movimientos</g:link>
+							<td>
+								${object.monto}
 							</td>
+							
 						</tr>
 					</g:each>
 				</tbody>
