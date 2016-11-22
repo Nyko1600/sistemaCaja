@@ -51,9 +51,10 @@
 					</table>
 				</div>
 				<div  class="col-md-2" style="margin-top: 10px">
-					<g:link controller="Client" action="create" class="btn btn-info	 btn-block" style="color:white">Nuevo cliente</g:link> 
-					<g:link controller="Pay" action="index" class="btn btn-info btn-block" style="color:white">Gestion pagos</g:link> 
-					<g:link controller="User" action="logout" class="btn btn-danger btn-block" style="color:white">Salir</g:link> 
+					<g:link controller="Client" action="create" class="btn btn-default	 btn-block" style="color:black">Nuevo cliente</g:link> 
+					<g:link controller="Pay" action="index" class="btn btn-default btn-block" style="color:black">Gestion pagos</g:link> 
+					<g:link controller="User" action="index" class="btn btn-danger btn-block" style="color:white">ABM usuarios</g:link> 
+					<g:link controller="User" action="logout" style="background:#555555!important; color:white" class="btn btn-default btn-block">Salir</g:link> 
 				</div>
 			</div>
 		</div>

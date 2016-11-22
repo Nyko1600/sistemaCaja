@@ -10,7 +10,10 @@ class UserController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def UserService
+
 	def login() {}
+
 
 	def authenticate() {
 		def user = User.findByLoginAndPassword(params.login, params.password)
@@ -31,20 +34,37 @@ class UserController {
 	}
 
 	def index(Integer max) {
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+		}
 		params.max = Math.min(max ?: 10, 100)
 		respond User.list(params), model:[userInstanceCount: User.count()]
 	}
 
 	def show(User userInstance) {
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+		}
 		respond userInstance
 	}
 
 	def create() {
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+		}
 		respond new User(params)
 	}
 
 	@Transactional
 	def save(User userInstance) {
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+		}
+
 		if (userInstance == null) {
 			notFound()
 			return
@@ -70,11 +90,21 @@ class UserController {
 	}
 
 	def edit(User userInstance) {
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+		}
+
 		respond userInstance
 	}
 
 	@Transactional
 	def update(User userInstance) {
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+		}
+
 		if (userInstance == null) {
 			notFound()
 			return
@@ -101,6 +131,10 @@ class UserController {
 
 	@Transactional
 	def delete(User userInstance) {
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+		}
 
 		if (userInstance == null) {
 			notFound()
