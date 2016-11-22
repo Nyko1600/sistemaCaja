@@ -1,21 +1,28 @@
 package caja
 
+import myException.InvalidParametersException
 import grails.transaction.Transactional
 @Transactional
+
 class CajaService {
-	def addPay(String client_id, long pay_id, double monto){
+	def addPay(String client_id, long pay_id, double monto) throws InvalidParametersException{
 		Date fecha = new Date();
+		if(client_id==null || pay_id==null || monto==null || !client_id.isNumber() ){
+			throw new InvalidParametersException ("parametros invalidos")
+		}
 		long clientId= Long.parseLong(client_id)
 		if(pay_id!=0){
 			monto*=-1
 		}
 		def nuevaCaja = new Caja(client_id:client_id,pay_id:pay_id,monto:monto,created:fecha)
+		def criteria = Client.createCriteria()		
+		
+		Client a = criteria { eq("id",clientId ) }.get(0)
+		a.saldo=Math.round((a.saldo+monto) * 100) / 100
+		
 		if (!nuevaCaja.save()) {
 			nuevaCaja.errors.each { println "errors: ${it}" }
 		}
-		def criteria = Client.createCriteria()
-		Client a = criteria { eq("id",clientId ) }.get(0)
-		a.saldo=Math.round((a.saldo+monto) * 100) / 100
 		if (!a.save()) {
 			a.errors.each { println "errors: ${it}" }
 		}
