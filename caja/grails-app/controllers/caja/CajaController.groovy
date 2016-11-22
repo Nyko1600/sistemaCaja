@@ -3,8 +3,17 @@ import myException.InvalidParametersException
 
 class CajaController {
 	static scaffold = true
+	def beforeInterceptor = [action:this.&auth]
 	def cajaService
-
+	
+	def auth(){
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+			return false
+		}
+	}
+	
 	def listClient(){
 		def criteria = Client.createCriteria();
 		def records = criteria.list { }
