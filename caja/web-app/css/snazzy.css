@@ -20,6 +20,9 @@ body {
 	margin-right: 1em;
 }
 
+#left {
+    margin-left: -100%; /* Puts the left sidebar to the top left of the .content element */
+}
 #header {
  	background: url(../images/logo_background.png) repeat-x;
 }

@@ -6,44 +6,52 @@
 <body>
 	<div id='overall' style="margin-left: 10px">
 		<div style="margin-right: 10px">
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Client_id</th>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Doc</th>
-						<th>Saldo</th>
-						<th>Selecccionar</th>
-					</tr>
-				</thead>
-				<tbody>
-					<g:each in="${clientList}" status="i" var="client">
-						<tr>
-							<td>
-								${client.id}
-							</td>
-							<td>
-								<g:link controller="Client" action="show" id="${client.id}" style="color:blue;">${client.nombre}</g:link>
-							</td>
-							<td>
-								${client.apellido}
-							</td>
-							<td>
-								${client.doc}
-							</td>
-							<td>
-								${client.saldo}
-							</td>
-							<td class="form-group text-center">
-								<g:link action="selectPay" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
-								<g:link action="moneyIn" params="[client_id:client.id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
-								<g:link action="movements" params="[client_id:client.id]" class="btn btn-primary" style="color:white;">Movimientos</g:link>
-							</td>
-						</tr>
-					</g:each>
-				</tbody>
-			</table>
+			<div class="row">
+				<div  class="col-md-10">
+					<table border="1">
+						<thead>
+							<tr>
+								<th>Client_id</th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Doc</th>
+								<th>Saldo</th>
+								<th>Selecccionar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<g:each in="${clientList}" status="i" var="client">
+								<tr>
+									<td>
+										${client.id}
+									</td>
+									<td>
+										<g:link controller="Client" action="show" id="${client.id}" style="color:blue;">${client.nombre}</g:link>
+									</td>
+									<td>
+										${client.apellido}
+									</td>
+									<td>
+										${client.doc}
+									</td>
+									<td>
+										${client.saldo}
+									</td>
+									<td class="form-group text-center">
+										<g:link action="selectPay" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
+										<g:link action="moneyIn" params="[client_id:client.id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
+										<g:link action="movements" params="[client_id:client.id]" class="btn btn-primary" style="color:white;">Movimientos</g:link>
+									</td>
+								</tr>
+							</g:each>
+						</tbody>
+					</table>
+				</div>
+				<div  class="col-md-2" style="margin-top: 10px">
+					<g:link controller="Client" action="create" class="btn btn-info	 btn-block" style="color:white">Nuevo cliente</g:link> 
+					<g:link controller="Pay" action="index" class="btn btn-info btn-block" style="color:white">Gestion pagos</g:link> 
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
