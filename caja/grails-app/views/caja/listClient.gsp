@@ -11,7 +11,7 @@
 		<div style="margin-right: 10px">
 			<div class="row">
 				<div  class="col-md-10">
-					<table border="1">
+					<table>
 						<thead>
 							<tr>
 								<th>Client_id</th>
@@ -50,7 +50,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div  class="col-md-2" style="margin-top: 10px">
+				<div  class="col-md-2" style="margin-top: 40px">
 					<g:link controller="Client" action="create" class="btn btn-default	 btn-block" style="color:black">Nuevo cliente</g:link> 
 					<g:link controller="Pay" action="index" class="btn btn-default btn-block" style="color:black">Gestion pagos</g:link> 
 					<g:link controller="User" action="index" class="btn btn-danger btn-block" style="color:white">ABM usuarios</g:link> 

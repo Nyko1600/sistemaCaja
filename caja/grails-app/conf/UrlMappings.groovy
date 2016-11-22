@@ -8,7 +8,7 @@ class UrlMappings {
         }
 
         //"/"(view:"/index")
-				"/"(controller:"caja/listClient")
+				"/"(controller:"user/login")
 				"/client/index"(controller:"caja/listClient")
 				"/caja/index"(controller:"caja/listClient")
 				"/caja/"(controller:"caja/listClient")
