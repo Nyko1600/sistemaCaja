@@ -20,6 +20,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'rol', 'error')} required">
+	<label for="rol">
+		<g:message code="user.rol.label" default="Rol" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select name="rol" from="${userInstance.constraints.rol.inList}" required="" value="${userInstance?.rol}" valueMessagePrefix="user.rol"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'name', 'error')} required">
 	<label for="name">
 		<g:message code="user.name.label" default="Name" />

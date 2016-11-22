@@ -1,7 +1,5 @@
 package caja
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -9,8 +7,18 @@ import grails.transaction.Transactional
 class UserController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
-	def UserService
+	def beforeInterceptor = [action:this.&auth, except:[
+			"authenticate",
+			"login",
+			"logout"
+		]]
+	def auth() {
+		if( !(session?.user?.rol == "admin") ){
+			flash.message = "Debes ser Administrador para gestionar usuarios"
+			redirect(controller:"caja", action:"listClient")
+			return false
+		}
+	}
 
 	def login() {}
 
@@ -34,36 +42,20 @@ class UserController {
 	}
 
 	def index(Integer max) {
-		if(!session.user){
-			flash.message = "Debe inciar session"
-			redirect(controller:"User", action:"login")
-		}
 		params.max = Math.min(max ?: 10, 100)
 		respond User.list(params), model:[userInstanceCount: User.count()]
 	}
 
 	def show(User userInstance) {
-		if(!session.user){
-			flash.message = "Debe inciar session"
-			redirect(controller:"User", action:"login")
-		}
 		respond userInstance
 	}
 
 	def create() {
-		if(!session.user){
-			flash.message = "Debe inciar session"
-			redirect(controller:"User", action:"login")
-		}
 		respond new User(params)
 	}
 
 	@Transactional
 	def save(User userInstance) {
-		if(!session.user){
-			flash.message = "Debe inciar session"
-			redirect(controller:"User", action:"login")
-		}
 
 		if (userInstance == null) {
 			notFound()
@@ -90,20 +82,14 @@ class UserController {
 	}
 
 	def edit(User userInstance) {
-		if(!session.user){
-			flash.message = "Debe inciar session"
-			redirect(controller:"User", action:"login")
-		}
+
 
 		respond userInstance
 	}
 
 	@Transactional
 	def update(User userInstance) {
-		if(!session.user){
-			flash.message = "Debe inciar session"
-			redirect(controller:"User", action:"login")
-		}
+
 
 		if (userInstance == null) {
 			notFound()
@@ -131,10 +117,7 @@ class UserController {
 
 	@Transactional
 	def delete(User userInstance) {
-		if(!session.user){
-			flash.message = "Debe inciar session"
-			redirect(controller:"User", action:"login")
-		}
+
 
 		if (userInstance == null) {
 			notFound()

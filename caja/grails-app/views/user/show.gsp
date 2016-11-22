@@ -31,7 +31,25 @@
 					
 				</li>
 				</g:if>
-
+			
+				<g:if test="${userInstance?.password}">
+				<li class="fieldcontain">
+					<span id="password-label" class="property-label"><g:message code="user.password.label" default="Password" /></span>
+					
+						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${userInstance}" field="password"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${userInstance?.rol}">
+				<li class="fieldcontain">
+					<span id="rol-label" class="property-label"><g:message code="user.rol.label" default="Rol" /></span>
+					
+						<span class="property-value" aria-labelledby="rol-label"><g:fieldValue bean="${userInstance}" field="rol"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${userInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="user.name.label" default="Name" /></span>

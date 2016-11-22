@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div id='overall' style="margin-left: 10px">
-        <g:if test="${flash.message}">
+      	<g:if test="${flash.message}">
  	       <div class="message">${flash.message}</div>
       	</g:if>
 		<div style="margin-right: 10px">
