@@ -15,11 +15,11 @@ class CajaService {
 			monto*=-1
 		}
 		def nuevaCaja = new Caja(client_id:client_id,pay_id:pay_id,monto:monto,created:fecha)
-		def criteria = Client.createCriteria()		
-		
+		def criteria = Client.createCriteria()
+
 		Client a = criteria { eq("id",clientId ) }.get(0)
 		a.saldo=Math.round((a.saldo+monto) * 100) / 100
-		
+
 		if (!nuevaCaja.save()) {
 			nuevaCaja.errors.each { println "errors: ${it}" }
 		}
@@ -35,9 +35,7 @@ class CajaService {
 		def listMovements =criteriaCaja.list {   eq("client_id",clientId )   }
 
 		def criteriaCliente = Client.createCriteria()
-		Client cliente = criteriaCliente { 
-			eq("id",clientId)
-		}.get(0)
+		Client cliente = criteriaCliente {  eq("id",clientId) }.get(0)
 
 		def criteriaPay = Pay.createCriteria()
 		def pagos = criteriaPay.list {

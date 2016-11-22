@@ -31,7 +31,7 @@ class CajaController {
 		}catch(InvalidParametersException e){
 			println e
 		}catch(NumberFormatException ex){
-			println "Exception: debe enviarse un numero entero como client id ${ex}" 
+			println "Exception: debe enviarse un numero entero como client id ${ex}"
 		}
 		catch(Exception ex){
 			ex.printStackTrace()
