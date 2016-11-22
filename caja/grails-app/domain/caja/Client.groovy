@@ -1,7 +1,6 @@
 package caja
 
-class Cliente {
-	int client_id
+class Client {
 	String nombre
 	String apellido
 	int doc
