@@ -3,8 +3,17 @@ import myException.InvalidParametersException
 
 class CajaController {
 	static scaffold = true
+	def beforeInterceptor = [action:this.&auth]
 	def cajaService
-
+	
+	def auth(){
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+			return false
+		}
+	}
+	
 	def listClient(){
 		def criteria = Client.createCriteria();
 		def records = criteria.list { }
@@ -28,13 +37,17 @@ class CajaController {
 			double monto=(Integer.parseInt(params.entero)+Integer.parseInt(params.decimal)/100)
 			//println "el cliente es ${clientId}, el servicio es ${serviceId}, el monto ingresado ${monto} "
 			cajaService.addPay(clientId, payId, monto)
+			flash.message = "Movimiento generado"
 		}catch(InvalidParametersException e){
 			println e
+			flash.message = "Error, parametros invalidos!"
 		}catch(NumberFormatException ex){
 			println "Exception: debe enviarse un numero entero como client id ${ex}"
+			flash.message = "Error al guardar"
 		}
 		catch(Exception ex){
 			ex.printStackTrace()
+			flash.message = "Error al guardar"
 		}finally{
 			redirect(uri:'/')
 		}
@@ -44,8 +57,9 @@ class CajaController {
 			def clientId=params.client_id
 			def values = cajaService.listMovements(clientId)
 			[objectArray:values]
-		}catch(NumberFormatException ex){
+		}catch(Exception ex){
 			println "Exception:  "+ex
+			flash.message = "Error al listar movimientos!"
 			redirect(uri:'/')
 		}
 	}

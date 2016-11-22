@@ -1,6 +1,16 @@
 package caja
 class PayController {
 	static scaffold = true
+	def beforeInterceptor = [action:this.&auth]
+
+	def auth(){
+		if(!session.user){
+			flash.message = "Debe inciar session"
+			redirect(controller:"User", action:"login")
+			return false
+		}
+	}
+
 	def loadData(){
 		new Pay(nombre:"MONOTRIBUTO ",fecha:"20 C/MES TODOS LOS CUIT",descripcion:"sin comentario",id:1).save()
 		new Pay(nombre:"AUTONOMOS",fecha:"10 C/MES TODOS LOS CUIT",descripcion:"sin comentario",id:2).save()
