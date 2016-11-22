@@ -6,6 +6,7 @@
 <body>
 	<div id='overall' style="margin-left: 10px">
 		<div style="margin-right: 10px">
+		<g:link action="listClient" class="btn"><g:img dir="images/skin" file="house.png"/> Home</g:link>
 			<table border="1">
 				<thead>
 					<tr>
@@ -33,7 +34,7 @@
 								${object.descripcion}
 							</td>
 							<td>
-								${object.registro}
+								<g:formatDate format="dd-MM-yyyy" date="${object.registro}"/>
 							</td>
 							<td>
 								${object.monto}
@@ -42,7 +43,7 @@
 						</tr>
 					</g:each>
 				</tbody>
-			</table>
+			</table>				
 		</div>
 	</div>
 </body>
