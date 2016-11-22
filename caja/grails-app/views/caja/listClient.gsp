@@ -5,6 +5,9 @@
 </head>
 <body>
 	<div id='overall' style="margin-left: 10px">
+        <g:if test="${flash.message}">
+ 	       <div class="message">${flash.message}</div>
+      	</g:if>
 		<div style="margin-right: 10px">
 			<div class="row">
 				<div  class="col-md-10">
@@ -50,6 +53,7 @@
 				<div  class="col-md-2" style="margin-top: 10px">
 					<g:link controller="Client" action="create" class="btn btn-info	 btn-block" style="color:white">Nuevo cliente</g:link> 
 					<g:link controller="Pay" action="index" class="btn btn-info btn-block" style="color:white">Gestion pagos</g:link> 
+					<g:link controller="User" action="logout" class="btn btn-danger btn-block" style="color:white">Salir</g:link> 
 				</div>
 			</div>
 		</div>

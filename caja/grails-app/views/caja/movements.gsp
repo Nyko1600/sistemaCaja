@@ -6,7 +6,11 @@
 <body>
 	<div id='overall' style="margin-left: 10px">
 		<div style="margin-right: 10px">
-		<g:link action="listClient" class="btn"><g:img dir="images/skin" file="house.png"/> Home</g:link>
+		<div class="buttons">
+          <span class="button">
+          	<g:link action="listClient"><g:img dir="images/skin" file="house.png"/> Home</g:link>            
+          </span>
+        </div>
 			<table border="1">
 				<thead>
 					<tr>
