@@ -49,6 +49,7 @@ class CajaService {
 			if( movement.pay_id!=0){
 				pago = pagos.find{it.id==movement.pay_id}
 			}
+			data.putAt("id", movement.id)
 			data.putAt("cliente", cliente.doc)
 			data.putAt("pago", movement.pay_id==0? "INFGRSO DE DINERO" : pago.nombre)
 			data.putAt("vencimineto", movement.pay_id==0? "-" : pago.fecha)

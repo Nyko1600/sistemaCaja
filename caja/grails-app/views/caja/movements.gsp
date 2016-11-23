@@ -42,7 +42,7 @@
 								<g:formatDate format="dd-MM-yyyy" date="${object.registro}"/>
 							</td>
 							<td>
-								${object.monto}
+								<g:link action="edit" id="${object.id}">${object.monto}</g:link>
 							</td>
 							
 						</tr>
