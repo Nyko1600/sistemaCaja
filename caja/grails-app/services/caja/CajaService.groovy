@@ -60,6 +60,40 @@ class CajaService {
 
 		return values
 	}
+	def getBalance(String client_id){
+		def criteriaCaja = Caja.createCriteria()
+		long clientId= Long.parseLong(client_id)
+		Calendar cal = Calendar.getInstance()
+		Calendar calEach = Calendar.getInstance()
+		def listMovements =criteriaCaja.list {   
+			eq("client_id",clientId )   
+			order("created", "asc")
+		}
+
+		ArrayList<Map> values = new ArrayList<Map>();
+		Map data = ["Ingreso":0,"Pago":0,"Diferencia":0]
+		data.putAt("Mes",listMovements.get(0).created)
+		for(Caja balance :listMovements){
+			cal.setTime(data.Mes)
+			calEach.setTime(balance.created)
+			if(cal.get(Calendar.MONTH) < calEach.get(Calendar.MONTH)){
+				values.add(data)
+				data = ["Ingreso":0,"Pago":0,"Diferencia":0,"Mes":""]
+			}
+			if(balance.monto > 0){
+				data.putAt("Ingreso",data.Ingreso + balance.monto)
+			}
+			if(balance.monto < 0){
+				data.putAt("Pago",data.Pago + balance.monto*-1)
+			}
+			data.putAt("Diferencia",data.Diferencia + balance.monto )
+			
+			data.putAt("Mes",balance.created)
+		}
+		values.add(data)
+		return values
+		
+	}
 	def setData(){
 		//new Cliente(id:1,client_id: 1,nombre: "juan", apellido: "perez",doc: 12345678 ).save()
 		//new Cliente(id:2,client_id: 2,nombre: "pedro", apellido: "gimenez",doc: 90123456 ).save()

@@ -5,7 +5,7 @@ class CajaController {
 	static scaffold = true
 	def beforeInterceptor = [action:this.&auth]
 	def cajaService
-	
+
 	def auth(){
 		if(!session.user){
 			flash.message = "Debe inciar session"
@@ -13,7 +13,7 @@ class CajaController {
 			return false
 		}
 	}
-	
+
 	def listClient(){
 		def criteria = Client.createCriteria();
 		def records = criteria.list { }
@@ -60,6 +60,18 @@ class CajaController {
 		}catch(Exception ex){
 			println "Exception:  "+ex
 			flash.message = "Error al listar movimientos!"
+			redirect(uri:'/')
+		}
+	}
+
+	def graphBalance(){
+		try{
+			def clientId=params.client_id
+			def balance = cajaService.getBalance(clientId)
+			[objectArray:balance]
+		}catch(Exception ex){
+			println "Exception:  "+ex
+			flash.message = "Error trantando de generar la grafica!"
 			redirect(uri:'/')
 		}
 	}

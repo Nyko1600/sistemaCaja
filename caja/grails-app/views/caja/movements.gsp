@@ -9,7 +9,7 @@
 		<div class="buttons">
           <span class="button">
           	<g:link action="listClient"><g:img dir="images/skin" file="house.png"/> Home</g:link>            
-          	<g:link action="logout"><g:img dir="images/skin" file="myLogout.ico" width="23" height="23"/> Log Out</g:link>            
+          	<g:link controller="User" action="logout"><g:img dir="images/skin" file="myLogout.ico" width="23" height="23"/> Log Out</g:link>            
           </span>
         </div>
 			<table border="1">
