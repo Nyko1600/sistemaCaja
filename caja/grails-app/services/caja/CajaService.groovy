@@ -78,17 +78,20 @@ class CajaService {
 			calEach.setTime(balance.created)
 			if(cal.get(Calendar.MONTH) < calEach.get(Calendar.MONTH)){
 				values.add(data)
-				data = ["Ingreso":0,"Pago":0,"Diferencia":0,"Mes":""]
+				data = ["Ingreso":0,"Pago":0,"Diferencia":0,"Mes":"",MesAño:""]
 			}
 			if(balance.monto > 0){
 				data.putAt("Ingreso",data.Ingreso + balance.monto)
 			}
 			if(balance.monto < 0){
-				data.putAt("Pago",data.Pago + balance.monto*-1)
+				data.putAt("Pago",data.Pago + balance.monto)
 			}
 			data.putAt("Diferencia",data.Diferencia + balance.monto )
 			
+			data.putAt("ddYYYY",String.valueOf(calEach.get(Calendar.MONTH)+1)+"-"+String.valueOf(calEach.get(Calendar.YEAR)))
+			
 			data.putAt("Mes",balance.created)
+			
 		}
 		values.add(data)
 		return values

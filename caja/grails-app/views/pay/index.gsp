@@ -25,11 +25,11 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="fecha" title="${message(code: 'pay.fecha.label', default: 'Fecha')}" />
+						<g:sortableColumn property="nombre" title="${message(code: 'pay.nombre.label', default: 'Nombre')}" />
 					
 						<g:sortableColumn property="descripcion" title="${message(code: 'pay.descripcion.label', default: 'Descripcion')}" />
-					
-						<g:sortableColumn property="nombre" title="${message(code: 'pay.nombre.label', default: 'Nombre')}" />
+										
+						<g:sortableColumn property="fecha" title="${message(code: 'pay.fecha.label', default: 'Fecha')}" />
 					
 					</tr>
 				</thead>
@@ -37,11 +37,11 @@
 				<g:each in="${payInstanceList}" status="i" var="payInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${payInstance.id}">${fieldValue(bean: payInstance, field: "fecha")}</g:link></td>
+						<td><g:link action="show" id="${payInstance.id}">${fieldValue(bean: payInstance, field: "nombre")}</g:link></td>
 					
 						<td>${fieldValue(bean: payInstance, field: "descripcion")}</td>
 					
-						<td>${fieldValue(bean: payInstance, field: "nombre")}</td>
+						<td>${fieldValue(bean: payInstance, field: "fecha")}</td>
 					
 					</tr>
 				</g:each>

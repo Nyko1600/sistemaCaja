@@ -44,6 +44,7 @@
 										<g:link action="selectPay" params="[client_id:client.id]" class="btn btn-warning" style="color:white;">Pago</g:link> 
 										<g:link action="moneyIn" params="[client_id:client.id]" class="btn btn-success" style="color:white;">Ingreso</g:link>
 										<g:link action="movements" params="[client_id:client.id]" class="btn btn-primary" style="color:white;">Movimientos</g:link>
+										<g:link action="graphBalance" params="[client_id:client.id]" class="btn btn-primary" style="color:white;">Grafica</g:link>
 									</td>
 								</tr>
 							</g:each>

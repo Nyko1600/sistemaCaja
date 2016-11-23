@@ -10,7 +10,7 @@
         var data = google.visualization.arrayToDataTable([
           ['Mes', 'Ingreso', 'Pagos', 'Balance'],
           	<g:each in="${objectArray}" status="i" var="object">
-          		['${object.Mes}',${object.Ingreso},${object.Pago},${object.Diferencia}],
+          		['${object.ddYYYY}',${object.Ingreso},Math.abs(${object.Pago}),Math.abs(${object.Diferencia})],
 			</g:each>
         ]);
 
